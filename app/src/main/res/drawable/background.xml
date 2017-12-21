@@ -6,7 +6,8 @@
     <item>
         <bitmap
             android:src="@drawable/splash_icon"
-            android:gravity="center" />
+            android:gravity="center"
+            android:tint="#fff" />
     </item>
 
 </layer-list>

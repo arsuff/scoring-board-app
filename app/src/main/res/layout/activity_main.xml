@@ -20,7 +20,9 @@
             android:layout_weight="1"
             android:layout_marginLeft="16dp"
             android:backgroundTint="@color/colorLight"
-            android:src="@drawable/icon_football" />
+            android:src="@drawable/icon_football"
+            android:onClick="openMenu"
+            android:id="@+id/btn_football"/>
 
         <ImageButton
             android:layout_width="156dp"
@@ -29,7 +31,9 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:backgroundTint="@color/colorLight"
-            android:src="@drawable/icon_basket"/>
+            android:src="@drawable/icon_basket"
+            android:onClick="openMenu"
+            android:id="@+id/btn_basket"/>
     </LinearLayout>
 
     <LinearLayout
@@ -44,7 +48,9 @@
             android:layout_weight="1"
             android:layout_marginLeft="16dp"
             android:backgroundTint="@color/colorLight"
-            android:src="@drawable/icon_volley"/>
+            android:src="@drawable/icon_volley"
+            android:onClick="openMenu"
+            android:id="@+id/btn_volley"/>
 
         <ImageButton
             android:layout_width="156dp"
@@ -54,7 +60,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:src="@drawable/icon_exit"
-            android:id="@+id/btn_exit"/>
+            android:id="@+id/btn_exit" />
     </LinearLayout>
 
 
