@@ -16,35 +16,45 @@
 
         <ImageButton
             android:layout_height="156dp"
-            android:layout_width="wrap_content"
+            android:layout_width="156dp"
             android:layout_weight="1"
-            android:layout_marginLeft="16dp"/>
+            android:layout_marginLeft="16dp"
+            android:backgroundTint="@color/colorLight"
+            android:src="@drawable/icon_football" />
 
         <ImageButton
-            android:layout_width="wrap_content"
+            android:layout_width="156dp"
             android:layout_weight="1"
             android:layout_height="156dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"/>
+            android:layout_marginRight="16dp"
+            android:backgroundTint="@color/colorLight"
+            android:src="@drawable/icon_basket"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
 
         <ImageButton
             android:layout_height="156dp"
-            android:layout_width="wrap_content"
+            android:layout_width="156dp"
             android:layout_weight="1"
-            android:layout_marginLeft="16dp"/>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="156dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"/>
+            android:backgroundTint="@color/colorLight"
+            android:src="@drawable/icon_volley"/>
+
+        <ImageButton
+            android:layout_width="156dp"
+            android:layout_weight="1"
+            android:layout_height="156dp"
+            android:backgroundTint="@color/colorLight"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/icon_exit"
+            android:id="@+id/btn_exit"/>
     </LinearLayout>
 
 
