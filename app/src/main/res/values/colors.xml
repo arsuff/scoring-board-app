@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!--primary 500-->
+    <color name="colorPrimary">#4CAF50</color>
+    <!--status bar 700-->
+    <color name="colorSecondary">#388E3C</color>
+
+    <color name="colorPrimaryDark">#0288D1</color>
+
+    <!--secondary 300-->
+    <color name="colorAccent">#388E3C</color>
+
+    <!--a200-->
+    <color name="colorLight">#C8E6C9</color>
 </resources>
