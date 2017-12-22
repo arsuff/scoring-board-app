@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton btnExit;
+    ImageButton btnExit, btnBasket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +20,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnExit = (ImageButton) findViewById(R.id.btn_exit);
+        btnBasket = (ImageButton) findViewById(R.id.btn_basket);
 
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 alertDialog();
+            }
+        });
+
+        btnBasket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent iBasket = new Intent(MainActivity.this, BasketMenuActivity.class);
+                startActivity(iBasket);
             }
         });
 

@@ -17,7 +17,8 @@
         android:layout_marginTop="16dp"
         android:paddingTop="24dp"
         android:paddingBottom="24dp"
-        android:backgroundTint="@color/colorLight"/>
+        android:backgroundTint="@color/colorLight"
+        android:id="@+id/btn_new"/>
 
     <Button
         android:layout_width="match_parent"
@@ -28,6 +29,7 @@
         android:layout_marginTop="16dp"
         android:paddingTop="24dp"
         android:paddingBottom="24dp"
-        android:backgroundTint="@color/colorLight"/>
+        android:backgroundTint="@color/colorLight"
+        android:id="@+id/btn_history"/>
 
 </LinearLayout>
