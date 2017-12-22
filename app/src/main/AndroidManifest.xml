@@ -22,6 +22,12 @@
         <activity android:name=".MenuActivity" />
         <activity android:name=".BasketMenuActivity" />
         <activity android:name=".BasketScoreActivity"></activity>
+        <activity android:name=".VolleyMenuActivity" />
+        <activity android:name=".ListHistoryVolleyActivity"/>
+        <activity android:name=".HistoryVolley"/>
+        <activity android:name=".VolleyScore"></activity>
+
+
     </application>
 
 </manifest>
