@@ -39,6 +39,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "values ('"+olahraga+"','"+teamA+"','"+teamB+"','"+scoreTeamASet1+"','"+scoreTeamBSet1+"','"+totalScoreTeamA+"','"+totalScoreTeamB+"') ");
     }
 
+    public void cobaInsert(String olahraga, String teamA, String teamB, int scoreTeamASet1, int scoreTeamBSet1){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("insert into score (olahraga, teamA, teamB, scoreTeamASet1, scoreTeamBSet2) values ('"+olahraga+"','"+teamA+"','"+teamB+"'," +
+                "'"+scoreTeamASet1+"','"+scoreTeamBSet1+"')");
+    }
+
 
     public void updateDataScore(int id, int scoreTeamASet2, int scoreTeamBSet2, int scoreTeamASet3, int scoreTeamBSet3, int scoreTeamASet4, int scoreTeamBSet4, int scoreTeamASet5, int scoreTeamBSet5, int totalScoreTeamA, int totalScoreTeamB){
         SQLiteDatabase db = this.getWritableDatabase();

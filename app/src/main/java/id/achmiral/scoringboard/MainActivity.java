@@ -12,7 +12,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton btnExit, btnBasket;
+    ImageButton btnExit, btnVolley, btnBasket;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +21,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnExit = (ImageButton) findViewById(R.id.btn_exit);
+
         btnBasket = (ImageButton) findViewById(R.id.btn_basket);
+
+        btnVolley = (ImageButton) findViewById(R.id.btn_volley);
+
+        btnVolley.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, VolleyMenuActivity.class);
+                startActivity(i);
+            }
+        });
 
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,5 +93,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(iVolley);
                 break;
         }
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        alertDialog();
+
     }
 }
