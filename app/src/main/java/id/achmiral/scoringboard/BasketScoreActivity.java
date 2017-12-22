@@ -109,4 +109,11 @@ public class BasketScoreActivity extends AppCompatActivity {
         displayForTeamB(scoreTeamB);
     }
 
+    public void resetPoint(View view) {
+        scoreTeamA = 0;
+        scoreTeamB = 0;
+
+        displayForTeamA(scoreTeamA);
+        displayForTeamB(scoreTeamB);
+    }
 }
