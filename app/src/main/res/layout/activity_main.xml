@@ -20,10 +20,9 @@
             android:layout_weight="1"
             android:layout_marginLeft="16dp"
             android:backgroundTint="@color/colorLight"
-            android:drawableTop="@drawable/icon_football"
+            android:drawableTop="@drawable/ic_football"
             android:paddingTop="35dp"
             android:text="Football"
-            android:src="@drawable/icon_football"
             android:onClick="openMenu"
             android:id="@+id/btn_football"/>
 
@@ -34,7 +33,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:backgroundTint="@color/colorLight"
-            android:drawableTop="@drawable/icon_basket"
+            android:drawableTop="@drawable/ic_basket"
             android:text="Basket"
             android:paddingTop="35dp"
             android:onClick="openMenu"
@@ -53,7 +52,7 @@
             android:layout_weight="1"
             android:layout_marginLeft="16dp"
             android:backgroundTint="@color/colorLight"
-            android:drawableTop="@drawable/icon_volley"
+            android:drawableTop="@drawable/ic_volley"
             android:text="Volley"
             android:onClick="openMenu"
             android:paddingTop="35dp"
@@ -66,7 +65,7 @@
             android:backgroundTint="@color/colorLight"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:drawableTop="@drawable/icon_exit"
+            android:drawableTop="@drawable/ic_exit"
             android:text="Exit"
             android:paddingTop="35dp"
             android:id="@+id/btn_exit" />
