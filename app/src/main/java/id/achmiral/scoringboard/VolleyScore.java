@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -24,12 +25,17 @@ public class VolleyScore extends AppCompatActivity{
     String menang, pemenang, teamA, teamB, olahraga = "volley";
     private SQLiteDatabase db =null;
     DatabaseHelper dbHelper;
-
+    Toolbar volleyScoreToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volley_score);
+
+        volleyScoreToolbar = findViewById(R.id.volley_score_toolbar);
+        volleyScoreToolbar.setTitle("Volley Score");
+        volleyScoreToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        setSupportActionBar(volleyScoreToolbar);
 
         dbHelper = new DatabaseHelper(this);
         txtTeamA = (TextView) findViewById(R.id.txt_team_a);

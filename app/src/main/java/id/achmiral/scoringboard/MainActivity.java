@@ -5,17 +5,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+
 
 public class MainActivity extends AppCompatActivity {
 
     Button btnExit, btnBasket, btnVolley;
+    Toolbar mainToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Setup app action bar
+        mainToolbar = findViewById(R.id.main_toolbar);
+        mainToolbar.setTitle("Scoring Board App");
+        mainToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        setSupportActionBar(mainToolbar);
 
         btnExit = findViewById(R.id.btn_exit);
         btnBasket = findViewById(R.id.btn_basket);

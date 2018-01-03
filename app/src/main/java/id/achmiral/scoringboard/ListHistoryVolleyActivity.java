@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,11 +26,17 @@ public class ListHistoryVolleyActivity extends AppCompatActivity {
     Menu menu;
     protected Cursor cursor;
     public static ListHistoryVolleyActivity lhva;
+    Toolbar listHistoryToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_history);
+
+        listHistoryToolbar = findViewById(R.id.list_history_toolbar);
+        listHistoryToolbar.setTitle("Volley History");
+        listHistoryToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        setSupportActionBar(listHistoryToolbar);
 
         lhva = this;
         dbhelper = new DatabaseHelper(this);
