@@ -22,6 +22,7 @@
 
             <!--Score-->
             <TextView
+                android:id="@+id/team_a"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Team A"
@@ -126,6 +127,7 @@
 
             <!--Score-->
             <TextView
+                android:id="@+id/team_b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Team B"
@@ -226,6 +228,16 @@
         android:layout_height="wrap_content"
         android:text="Reset Points"
         android:onClick="resetPoint"/>
+
+    <Button
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Score"
+        android:onClick="saveScore"/>
+
 
 
 

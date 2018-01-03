@@ -15,14 +15,22 @@ public class BasketMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        btnNew = (Button) findViewById(R.id.btn_new);
-        btnHistory = (Button) findViewById(R.id.btn_history);
+        btnNew = findViewById(R.id.btn_new);
+        btnHistory = findViewById(R.id.btn_history);
 
         btnNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent iNew = new Intent(BasketMenuActivity.this, BasketScoreActivity.class);
                 startActivity(iNew);
+            }
+        });
+
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent iHistory = new Intent(BasketMenuActivity.this, BasketHistoryActivity.class);
+                startActivity(iHistory);
             }
         });
     }

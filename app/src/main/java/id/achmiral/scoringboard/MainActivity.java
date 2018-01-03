@@ -10,7 +10,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnExit, btnBasket;
+    Button btnExit, btnBasket, btnVolley;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         btnExit = findViewById(R.id.btn_exit);
         btnBasket = findViewById(R.id.btn_basket);
 
-        btnVolley = (ImageButton) findViewById(R.id.btn_volley);
+        btnVolley = findViewById(R.id.btn_volley);
 
         btnVolley.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,17 +76,9 @@ public class MainActivity extends AppCompatActivity {
     public void openMenu(View view) {
 
         switch (view.getId()) {
-            case R.id.btn_football:
-                Intent iFootball = new Intent(this, MenuActivity.class);
-                startActivity(iFootball);
-                break;
             case R.id.btn_basket:
-                Intent iBasket = new Intent(this, MenuActivity.class);
+                Intent iBasket = new Intent(this, BasketMenuActivity.class);
                 startActivity(iBasket);
-                break;
-            case R.id.btn_volley:
-                Intent iVolley = new Intent(this, MenuActivity.class);
-                startActivity(iVolley);
                 break;
         }
 
