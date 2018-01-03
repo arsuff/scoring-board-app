@@ -2,17 +2,29 @@ package id.achmiral.scoringboard;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import id.achmiral.scoringboard.helper.DatabaseHelper;
+import id.achmiral.scoringboard.model.Basket;
 
 public class BasketScoreActivity extends AppCompatActivity {
 
     int scoreTeamA, scoreTeamB;
+    TextView tv_teamA, tv_teamB, tv_scoreA, tv_scoreB;
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basket_score);
+
+        db = new DatabaseHelper(getApplicationContext());
+        tv_teamA = findViewById(R.id.team_a);
+        tv_teamB = findViewById(R.id.team_b);
+        tv_scoreA = findViewById(R.id.team_a_score);
+        tv_scoreB = findViewById(R.id.team_b_score);
     }
 
     public void displayForTeamA(int score) {
@@ -115,5 +127,27 @@ public class BasketScoreActivity extends AppCompatActivity {
 
         displayForTeamA(scoreTeamA);
         displayForTeamB(scoreTeamB);
+    }
+
+    public void saveScore(View view) {
+        String teamA = tv_teamA.getText().toString();
+        String teamB = tv_teamB.getText().toString();
+        int scoreA = Integer.parseInt(tv_scoreA.getText().toString());
+        int scoreB = Integer.parseInt(tv_scoreB.getText().toString());
+
+        Log.d("Score A bro", "Score A: " + scoreA);
+        Log.d("Score B bro", "Score B: " + scoreB);
+
+        Basket basket = new Basket(teamA, teamB, scoreA, scoreB);
+
+        db.createBasket(basket);
+
+        scoreTeamA = 0;
+        scoreTeamB = 0;
+
+        displayForTeamA(scoreTeamA);
+        displayForTeamB(scoreTeamB);
+
+        Log.d("Basket Count", "Basket Count: " + db.getAllBaskets().size());
     }
 }

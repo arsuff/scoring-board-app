@@ -26,8 +26,7 @@
         <activity android:name=".ListHistoryVolleyActivity"/>
         <activity android:name=".HistoryVolley"/>
         <activity android:name=".VolleyScore"></activity>
-
-
+        <activity android:name=".BasketHistoryActivity"></activity>
     </application>
 
 </manifest>
