@@ -2,6 +2,7 @@ package id.achmiral.scoringboard;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -14,11 +15,17 @@ public class BasketScoreActivity extends AppCompatActivity {
     int scoreTeamA, scoreTeamB;
     TextView tv_teamA, tv_teamB, tv_scoreA, tv_scoreB;
     DatabaseHelper db;
+    Toolbar basketScoreToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basket_score);
+
+        basketScoreToolbar = findViewById(R.id.basket_score_toolbar);
+        basketScoreToolbar.setTitle("Basket Score");
+        basketScoreToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        setSupportActionBar(basketScoreToolbar);
 
         db = new DatabaseHelper(getApplicationContext());
         tv_teamA = findViewById(R.id.team_a);
