@@ -2,27 +2,22 @@ package id.achmiral.scoringboard;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton btnExit, btnVolley, btnBasket;
-
-
+    Button btnExit, btnBasket;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnExit = (ImageButton) findViewById(R.id.btn_exit);
-
-        btnBasket = (ImageButton) findViewById(R.id.btn_basket);
+        btnExit = findViewById(R.id.btn_exit);
+        btnBasket = findViewById(R.id.btn_basket);
 
         btnVolley = (ImageButton) findViewById(R.id.btn_volley);
 
