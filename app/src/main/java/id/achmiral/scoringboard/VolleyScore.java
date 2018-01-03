@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import id.achmiral.scoringboard.helper.DatabaseHelper;
+
 public class VolleyScore extends AppCompatActivity{
 
     TextView txtScoreA, txtScoreB, txtTeamA, txtTeamB, tvASet1, tvBSet1, tvASet2, tvBSet2, tvASet3, tvBSet3, tvASet4, tvBSet4, tvASet5, tvBSet5, tvTotalA, tvTotalB;
@@ -21,7 +23,7 @@ public class VolleyScore extends AppCompatActivity{
     int scoreTeamA=0, scoreTeamB=0, scoreTotalA=0, scoreTotalB=0;
     String menang, pemenang, teamA, teamB, olahraga = "volley";
     private SQLiteDatabase db =null;
-    DatabaseHelper  dbHelper;
+    DatabaseHelper dbHelper;
 
 
     @Override

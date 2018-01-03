@@ -110,6 +110,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return baskets;
     }
 
+
+    // Insert Basket
     public long createBasket(Basket basket) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -123,6 +125,56 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         long basket_id = db.insert(TABLE_BASKET, null, values);
 
         return basket_id;
+    }
+
+    // Get Single Basket
+    public Basket getBasket(long basket_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABLE_BASKET + " WHERE " + KEY_ID + " = "
+                             + basket_id;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null) {
+            c.moveToFirst();
+        }
+
+        Basket bs = new Basket();
+
+        bs.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        bs.setTeamA(c.getString(c.getColumnIndex(TEAM_A)));
+        bs.setTeamB(c.getString(c.getColumnIndex(TEAM_B)));
+        bs.setScoreA(c.getInt(c.getColumnIndex(SCORE_TEAM_A)));
+        bs.setScoreB(c.getInt(c.getColumnIndex(SCORE_TEAM_B)));
+        bs.setCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+        return bs;
+    }
+
+    // Update Basket
+    public int updateBasket(Basket bs) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_ID, bs.getId());
+        values.put(TEAM_A, bs.getTeamA());
+        values.put(TEAM_B, bs.getTeamB());
+        values.put(SCORE_TEAM_A, bs.getScoreA());
+        values.put(SCORE_TEAM_B, bs.getScoreB());
+
+        return db.update(TABLE_BASKET, values, KEY_ID + " = ? ",
+                new String[] { String.valueOf(bs.getId())});
+    }
+
+    // Delete Basket
+    public void deleteBasket(long basket_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_BASKET, KEY_ID + " = ? ",
+                new String[] { String.valueOf(basket_id)});
     }
 
 

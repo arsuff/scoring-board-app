@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import id.achmiral.scoringboard.helper.DatabaseHelper;
+
 /**
  * Created by MICHAEL BAGUS on 12/22/2017.
  */

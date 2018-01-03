@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import id.achmiral.scoringboard.helper.DatabaseHelper;
+
 /**
  * Created by MICHAEL BAGUS on 12/22/2017.
  */
