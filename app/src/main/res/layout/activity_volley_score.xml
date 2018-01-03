@@ -140,6 +140,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_weight="3"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:id="@+id/tv_score_total_a"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ganti Set"
+                android:layout_gravity="center"
+                android:id="@+id/btn_ganti_set"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="25dp"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:id="@+id/tv_score_total_b"/>
+        </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -155,19 +188,22 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="3"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/tv_a_set1"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="vs"
                 android:layout_weight="5"
-                android:gravity="center"/>
+                android:gravity="center"
+                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="3"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/tv_b_set1"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -192,7 +228,8 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="3"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/tv_a_set2"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -204,7 +241,8 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="3"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/tv_b_set2"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -228,7 +266,8 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="3"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/tv_a_set3"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -240,7 +279,8 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="3"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/tv_b_set3"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -264,7 +304,8 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="3"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/tv_a_set4"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -276,7 +317,8 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="3"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/tv_b_set4"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -300,7 +342,8 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="3"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/tv_a_set5"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -312,7 +355,8 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="3"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/tv_b_set5"/>
         </LinearLayout>
 
     </LinearLayout>
