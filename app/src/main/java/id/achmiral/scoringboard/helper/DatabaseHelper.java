@@ -83,7 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public List<Basket> getAllBaskets() {
         List<Basket> baskets = new ArrayList<Basket>();
 
-        String selectQuery = "SELECT * FROM " + TABLE_BASKET;
+        String selectQuery = "SELECT * FROM " + TABLE_BASKET + " ORDER BY " + KEY_CREATED_AT + " DESC";
 
         Log.e(LOG, selectQuery);
 
