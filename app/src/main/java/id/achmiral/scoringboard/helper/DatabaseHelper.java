@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Locale;
 
 import id.achmiral.scoringboard.model.Basket;
+import id.achmiral.scoringboard.model.Football;
 
 /**
  * Created by ner46 on 25/12/17.
@@ -35,14 +36,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String KEY_ID = "id";
     private static final String KEY_CREATED_AT = "created_at";
 
-    // Kolom Basket
+    // Kolom Basket dan Football
     private static final String TEAM_A = "team_a";
     private static final String TEAM_B = "team_b";
     private static final String SCORE_TEAM_A = "score_team_a";
     private static final String SCORE_TEAM_B = "score_team_b";
     private static final String WINNER = "winner";
-
-    // Kolom Football
 
     // Kolom Volley
 
@@ -54,7 +53,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             + KEY_CREATED_AT + " DATETIME" + ")";
 
     // Create Tabel Football
-    // TODO: Create table football
+    private static final String CREATE_TABLE_FOOTBALL = "CREATE TABLE " + TABLE_FOOTBALL + "(" + KEY_ID
+            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TEAM_A + " TEXT, " + TEAM_B + " TEXT, "
+            + SCORE_TEAM_A + " INTEGER, " + SCORE_TEAM_B + " INTEGER, "
+            + KEY_CREATED_AT + " DATETIME" + ")";
 
     // Create Tabel Volley
     // TODO: Create table volley
@@ -67,12 +69,17 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(CREATE_TABLE_BASKET);
+
+        db.execSQL(CREATE_TABLE_FOOTBALL);
     }
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Ketika mengupgrade database baru
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BASKET);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FOOTBALL);
 
         // Create table baru
         onCreate(db);
@@ -178,6 +185,108 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.delete(TABLE_BASKET, KEY_ID + " = ? ",
                 new String[] { String.valueOf(basket_id)});
     }
+
+    // =================================================================================
+
+    public List<Football> getAllFootballs() {
+        List<Football> footballs = new ArrayList<Football>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_FOOTBALL;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+
+        // Looping ke semua baris dan ditambahkan ke list
+        if (c.moveToFirst()) {
+            do {
+                Football football = new Football();
+                football.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+                football.setTeamA(c.getString(c.getColumnIndex(TEAM_A)));
+                football.setTeamB(c.getString(c.getColumnIndex(TEAM_B)));
+                football.setScoreA(c.getInt(c.getColumnIndex(SCORE_TEAM_A)));
+                football.setScoreB(c.getInt(c.getColumnIndex(SCORE_TEAM_B)));
+                football.setCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // tambah bfootball ke list
+                footballs.add(football);
+            } while (c.moveToNext());
+        }
+
+        return footballs;
+    }
+
+    // Get Single Football
+    public Football getFootball(long football_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABLE_FOOTBALL + " WHERE " + KEY_ID + " = "
+                + football_id;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null) {
+            c.moveToFirst();
+        }
+
+        Football football = new Football();
+
+        football.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        football.setTeamA(c.getString(c.getColumnIndex(TEAM_A)));
+        football.setTeamB(c.getString(c.getColumnIndex(TEAM_B)));
+        football.setScoreA(c.getInt(c.getColumnIndex(SCORE_TEAM_A)));
+        football.setScoreB(c.getInt(c.getColumnIndex(SCORE_TEAM_B)));
+        football.setCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+        return football;
+    }
+
+    // Create Football
+    public long createFootball(Football football) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(TEAM_A, football.getTeamA());
+        values.put(TEAM_B, football.getTeamB());
+        values.put(SCORE_TEAM_A, football.getScoreA());
+        values.put(SCORE_TEAM_B, football.getScoreB());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        long football_id = db.insert(TABLE_FOOTBALL, null, values);
+
+        Log.e("ID Baru coyyyy....", String.valueOf(football_id));
+
+        return football_id;
+    }
+
+    // Update Football
+    public int updateFootball(Football football) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_ID, football.getId());
+        values.put(TEAM_A, football.getTeamA());
+        values.put(TEAM_B, football.getTeamB());
+        values.put(SCORE_TEAM_A, football.getScoreA());
+        values.put(SCORE_TEAM_B, football.getScoreB());
+
+        return db.update(TABLE_FOOTBALL, values, KEY_ID + " = ? ",
+                new String[] { String.valueOf(football.getId())});
+    }
+
+    // Delete Football
+    public void deleteFootball(long football_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_FOOTBALL, KEY_ID + " = ? ",
+                new String[] { String.valueOf(football_id)});
+    }
+
+    // =================================================================================
 
 
     public void closeDB() {
