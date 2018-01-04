@@ -124,6 +124,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         long basket_id = db.insert(TABLE_BASKET, null, values);
 
+        Log.e("ID Baru coyyyy....", String.valueOf(basket_id));
+
         return basket_id;
     }
 
