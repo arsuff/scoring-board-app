@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/team_a_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Team A"
+        android:gravity="start"
+        android:layout_weight="1"
+        android:paddingLeft="16dp"/>
+
+    <TextView
+        android:id="@+id/team_a_score_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="101"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-------"
+        android:gravity="center_horizontal"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/team_b_score_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="99"
+        android:gravity="end"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/team_b_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Team B"
+        android:layout_weight="1"
+        android:paddingRight="16dp"
+        android:gravity="end"/>
+
+</LinearLayout>

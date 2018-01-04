@@ -1,5 +1,6 @@
 package id.achmiral.scoringboard;
 
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -233,5 +234,12 @@ public class BasketScoreActivity extends AppCompatActivity {
 
 
         Log.d("Basket Count", "Basket Count: " + db.getAllBaskets().size());
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, BasketMenuActivity.class));
+        finish();
     }
 }

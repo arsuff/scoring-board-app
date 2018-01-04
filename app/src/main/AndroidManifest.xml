@@ -23,10 +23,11 @@
         <activity android:name=".BasketMenuActivity" />
         <activity android:name=".BasketScoreActivity" />
         <activity android:name=".VolleyMenuActivity" />
-        <activity android:name=".ListHistoryVolleyActivity"/>
-        <activity android:name=".HistoryVolley"/>
-        <activity android:name=".VolleyScore"></activity>
-        <activity android:name=".BasketHistoryActivity"></activity>
+        <activity android:name=".ListHistoryVolleyActivity" />
+        <activity android:name=".HistoryVolley" />
+        <activity android:name=".VolleyScore" />
+        <activity android:name=".BasketHistoryActivity" />
+        <activity android:name=".BasketHistoryDetailActivity"></activity>
     </application>
 
 </manifest>
