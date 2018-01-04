@@ -35,7 +35,7 @@ public class VolleyMenuActivity extends AppCompatActivity {
         btnVolleyHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(VolleyMenuActivity.this, ListHistoryVolleyActivity.class);
+                Intent i = new Intent(VolleyMenuActivity.this, VolleyHistoryActivity.class);
                 startActivity(i);
             }
         });

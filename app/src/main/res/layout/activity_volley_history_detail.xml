@@ -4,19 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="id.achmiral.scoringboard.VolleyScore"
-    android:orientation="vertical"
-    >
+    tools:context="id.achmiral.scoringboard.VolleyHistoryDetailActivity"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/volley_score_toolbar"
+        android:id="@+id/menu_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
 
     <LinearLayout
         android:layout_height="wrap_content"
@@ -53,35 +51,6 @@
                 android:paddingTop="8dp"
                 android:id="@+id/txt_team_a_score"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="-"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:id="@+id/btn_kurang_team_A"
-                    android:onClick="kurangScoreA"
-                    />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="+"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:id="@+id/btn_tambah_team_A"
-                    android:onClick="tambahScoreA"
-                    />
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -113,37 +82,19 @@
                 android:paddingTop="8dp"
                 android:id="@+id/txt_team_b_score"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="-"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:id="@+id/btn_kurang_team_B"
-                    android:onClick="kurangScoreB"
-                    />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="+"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:id="@+id/btn_tambah_team_B"
-                    android:onClick="tambahScoreB"
-                    />
-            </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="Delete Score"
+        android:id="@+id/btn_delete_vol"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -166,21 +117,7 @@
                 android:gravity="center"
                 android:id="@+id/tv_score_total_a"/>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ganti Set"
-                android:layout_gravity="center"
-                android:id="@+id/btn_ganti_set"
-                />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Save"
-                android:layout_gravity="center"
-                android:id="@+id/btn_save_volley"
-                android:onClick="saveScoreVolley"
-                />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Locale;
 
 import id.achmiral.scoringboard.model.Basket;
+import id.achmiral.scoringboard.model.Volley;
 
 /**
  * Created by ner46 on 25/12/17.
@@ -30,6 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     // Nama Tabel
     private static final String TABLE_BASKET = "basket";
     private static final String TABLE_FOOTBALL = "football";
+    private static final String TABLE_VOLLEY = "volley";
 
     // Kolom Umum
     private static final String KEY_ID = "id";
@@ -45,7 +47,20 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     // Kolom Football
 
     // Kolom Volley
-
+    private static final String TEAM_A_VOL = "team_a";
+    private static final String TEAM_B_VOL = "team_b";
+    private static final String SCORE_TEAM_A_SET1 = "score_team_a_set1";
+    private static final String SCORE_TEAM_A_SET2 = "score_team_a_set2";
+    private static final String SCORE_TEAM_A_SET3 = "score_team_a_set3";
+    private static final String SCORE_TEAM_A_SET4 = "score_team_a_set4";
+    private static final String SCORE_TEAM_A_SET5 = "score_team_a_set5";
+    private static final String SCORE_TEAM_B_SET1 = "score_team_b_set1";
+    private static final String SCORE_TEAM_B_SET2 = "score_team_b_set2";
+    private static final String SCORE_TEAM_B_SET3 = "score_team_b_set3";
+    private static final String SCORE_TEAM_B_SET4 = "score_team_b_set4";
+    private static final String SCORE_TEAM_B_SET5 = "score_team_b_set5";
+    private static final String TOTAL_SCORE_TEAM_A = "total_score_team_a";
+    private static final String TOTAL_SCORE_TEAM_B = "total_score_team_b";
 
     // Create Tabel Basket
     private static final String CREATE_TABLE_BASKET = "CREATE TABLE " + TABLE_BASKET + "(" + KEY_ID
@@ -58,6 +73,15 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     // Create Tabel Volley
     // TODO: Create table volley
+    private static final String CREATE_TABLE_VOLLEY = "CREATE TABLE " + TABLE_VOLLEY + "(" + KEY_ID
+            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TEAM_A_VOL + " TEXT, " + TEAM_B_VOL + " TEXT, "
+            + SCORE_TEAM_A_SET1 + " INTEGER, " + SCORE_TEAM_B_SET1 + " INTEGER, "
+            + SCORE_TEAM_A_SET2 + " INTEGER, " + SCORE_TEAM_B_SET2 + " INTEGER, "
+            + SCORE_TEAM_A_SET3 + " INTEGER, " + SCORE_TEAM_B_SET3 + " INTEGER, "
+            + SCORE_TEAM_A_SET4 + " INTEGER, " + SCORE_TEAM_B_SET4 + " INTEGER, "
+            + SCORE_TEAM_A_SET5 + " INTEGER, " + SCORE_TEAM_B_SET5 + " INTEGER, "
+            + TOTAL_SCORE_TEAM_A + " INTEGER, " + TOTAL_SCORE_TEAM_B + " INTEGER, "
+            + KEY_CREATED_AT + " DATETIME" + ")";
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VER);
@@ -67,12 +91,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(CREATE_TABLE_BASKET);
+        db.execSQL(CREATE_TABLE_VOLLEY);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Ketika mengupgrade database baru
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BASKET);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_VOLLEY);
 
         // Create table baru
         onCreate(db);
@@ -180,6 +206,146 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
+    // ------------------------ "volley" table methods ----------------//
+
+    public List<Volley> getAllVolleys() {
+        List<Volley> volleys = new ArrayList<Volley>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_VOLLEY;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+
+        // Looping ke semua baris dan ditambahkan ke list
+        if (c.moveToFirst()) {
+            do {
+                Volley volley = new Volley();
+                volley.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+                volley.setTeamAVol(c.getString(c.getColumnIndex(TEAM_A_VOL)));
+                volley.setTeamBVol(c.getString(c.getColumnIndex(TEAM_B_VOL)));
+                volley.setScoreASet1(c.getInt(c.getColumnIndex(SCORE_TEAM_A_SET1)));
+                volley.setScoreBSet1(c.getInt(c.getColumnIndex(SCORE_TEAM_B_SET1)));
+                volley.setScoreASet2(c.getInt(c.getColumnIndex(SCORE_TEAM_A_SET2)));
+                volley.setScoreBSet2(c.getInt(c.getColumnIndex(SCORE_TEAM_B_SET2)));
+                volley.setScoreASet3(c.getInt(c.getColumnIndex(SCORE_TEAM_A_SET3)));
+                volley.setScoreBSet3(c.getInt(c.getColumnIndex(SCORE_TEAM_B_SET3)));
+                volley.setScoreASet4(c.getInt(c.getColumnIndex(SCORE_TEAM_A_SET4)));
+                volley.setScoreBSet4(c.getInt(c.getColumnIndex(SCORE_TEAM_B_SET4)));
+                volley.setScoreASet5(c.getInt(c.getColumnIndex(SCORE_TEAM_A_SET5)));
+                volley.setScoreBSet5(c.getInt(c.getColumnIndex(SCORE_TEAM_B_SET5)));
+                volley.setTotalScoreA(c.getInt(c.getColumnIndex(TOTAL_SCORE_TEAM_A)));
+                volley.setTotalScoreB(c.getInt(c.getColumnIndex(TOTAL_SCORE_TEAM_B)));
+                volley.setCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // tambah basket ke list
+                volleys.add(volley);
+            } while (c.moveToNext());
+        }
+
+        return volleys;
+    }
+
+    // Insert Volley
+    public long createVolley(Volley volley) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(TEAM_A_VOL, volley.getTeamAVol());
+        values.put(TEAM_B_VOL, volley.getTeamBVol());
+        values.put(SCORE_TEAM_A_SET1, volley.getScoreASet1());
+        values.put(SCORE_TEAM_B_SET1, volley.getScoreBSet1());
+        values.put(SCORE_TEAM_A_SET2, volley.getScoreASet2());
+        values.put(SCORE_TEAM_B_SET2, volley.getScoreBSet2());
+        values.put(SCORE_TEAM_A_SET3, volley.getScoreASet3());
+        values.put(SCORE_TEAM_B_SET3, volley.getScoreBSet3());
+        values.put(SCORE_TEAM_A_SET4, volley.getScoreASet4());
+        values.put(SCORE_TEAM_B_SET4, volley.getScoreBSet4());
+        values.put(SCORE_TEAM_A_SET5, volley.getScoreASet5());
+        values.put(SCORE_TEAM_B_SET5, volley.getScoreBSet5());
+        values.put(TOTAL_SCORE_TEAM_A, volley.getTotalScoreA());
+        values.put(TOTAL_SCORE_TEAM_B, volley.getTotalScoreB());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        long volley_id = db.insert(TABLE_VOLLEY, null, values);
+
+        return volley_id;
+    }
+
+    // Get Single Volley
+    public Volley getVolley(long volley_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABLE_VOLLEY + " WHERE " + KEY_ID + " = "
+                + volley_id;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null) {
+            c.moveToFirst();
+        }
+
+        Volley vl = new Volley();
+
+        vl.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        vl.setTeamAVol(c.getString(c.getColumnIndex(TEAM_A_VOL)));
+        vl.setTeamBVol(c.getString(c.getColumnIndex(TEAM_B_VOL)));
+        vl.setScoreASet1(c.getInt(c.getColumnIndex(SCORE_TEAM_A_SET1)));
+        vl.setScoreBSet1(c.getInt(c.getColumnIndex(SCORE_TEAM_B_SET1)));
+        vl.setScoreASet2(c.getInt(c.getColumnIndex(SCORE_TEAM_A_SET2)));
+        vl.setScoreBSet2(c.getInt(c.getColumnIndex(SCORE_TEAM_B_SET2)));
+        vl.setScoreASet3(c.getInt(c.getColumnIndex(SCORE_TEAM_A_SET3)));
+        vl.setScoreBSet3(c.getInt(c.getColumnIndex(SCORE_TEAM_B_SET3)));
+        vl.setScoreASet4(c.getInt(c.getColumnIndex(SCORE_TEAM_A_SET4)));
+        vl.setScoreBSet4(c.getInt(c.getColumnIndex(SCORE_TEAM_B_SET4)));
+        vl.setScoreASet5(c.getInt(c.getColumnIndex(SCORE_TEAM_A_SET5)));
+        vl.setScoreBSet5(c.getInt(c.getColumnIndex(SCORE_TEAM_B_SET5)));
+        vl.setTotalScoreA(c.getInt(c.getColumnIndex(TOTAL_SCORE_TEAM_A)));
+        vl.setTotalScoreB(c.getInt(c.getColumnIndex(TOTAL_SCORE_TEAM_B)));
+        vl.setCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+        return vl;
+    }
+
+    // Update Volley
+    public int updateVolley(Volley vl) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_ID, vl.getId());
+        values.put(TEAM_A_VOL, vl.getTeamAVol());
+        values.put(TEAM_B_VOL, vl.getTeamBVol());
+        values.put(SCORE_TEAM_A_SET1, vl.getScoreASet1());
+        values.put(SCORE_TEAM_B_SET1, vl.getScoreBSet1());
+        values.put(SCORE_TEAM_A_SET2, vl.getScoreASet2());
+        values.put(SCORE_TEAM_B_SET2, vl.getScoreBSet2());
+        values.put(SCORE_TEAM_A_SET3, vl.getScoreASet3());
+        values.put(SCORE_TEAM_B_SET3, vl.getScoreBSet3());
+        values.put(SCORE_TEAM_A_SET4, vl.getScoreASet4());
+        values.put(SCORE_TEAM_B_SET4, vl.getScoreBSet4());
+        values.put(SCORE_TEAM_A_SET5, vl.getScoreASet5());
+        values.put(SCORE_TEAM_B_SET5, vl.getScoreBSet5());
+        values.put(TOTAL_SCORE_TEAM_A, vl.getTotalScoreA());
+        values.put(TOTAL_SCORE_TEAM_B, vl.getTotalScoreB());
+        values.put(KEY_CREATED_AT, getDateTime());
+        return db.update(TABLE_VOLLEY, values, KEY_ID + " = ? ",
+                new String[] { String.valueOf(vl.getId())});
+    }
+
+    // Delete Basket
+    public void deleteVolley(long volley_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_VOLLEY, KEY_ID + " = ? ",
+                new String[] { String.valueOf(volley_id)});
+    }
+
+
+
     public void closeDB() {
         SQLiteDatabase db = this.getReadableDatabase();
         if (db != null && db.isOpen()) {
@@ -193,4 +359,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         return dateFormat.format(date);
     }
+
+
 }

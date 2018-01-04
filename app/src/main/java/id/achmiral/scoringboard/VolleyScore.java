@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -16,15 +17,15 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import id.achmiral.scoringboard.helper.DatabaseHelper;
+import id.achmiral.scoringboard.model.Volley;
 
 public class VolleyScore extends AppCompatActivity{
 
     TextView txtScoreA, txtScoreB, txtTeamA, txtTeamB, tvASet1, tvBSet1, tvASet2, tvBSet2, tvASet3, tvBSet3, tvASet4, tvBSet4, tvASet5, tvBSet5, tvTotalA, tvTotalB;
-    Button btnTambahTeamA, btnKurangTeamA, btnTambahTeamB, btnKurangTeamB, btnGantiSet;
+    Button btnTambahTeamA, btnKurangTeamA, btnTambahTeamB, btnKurangTeamB, btnGantiSet, btnSaveVolley;
     int scoreTeamA=0, scoreTeamB=0, scoreTotalA=0, scoreTotalB=0;
     String menang, pemenang, teamA, teamB, olahraga = "volley";
-    private SQLiteDatabase db =null;
-    DatabaseHelper dbHelper;
+    DatabaseHelper db;
     Toolbar volleyScoreToolbar;
 
     @Override
@@ -37,7 +38,7 @@ public class VolleyScore extends AppCompatActivity{
         volleyScoreToolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(volleyScoreToolbar);
 
-        dbHelper = new DatabaseHelper(this);
+        db = new DatabaseHelper(getApplicationContext());
         txtTeamA = (TextView) findViewById(R.id.txt_team_a);
         txtTeamB = (TextView) findViewById(R.id.txt_team_b);
         txtScoreA = (TextView) findViewById(R.id.txt_team_a_score);
@@ -47,6 +48,7 @@ public class VolleyScore extends AppCompatActivity{
         btnTambahTeamB = (Button) findViewById(R.id.btn_tambah_team_B);
         btnKurangTeamB = (Button) findViewById(R.id.btn_kurang_team_B);
         btnGantiSet = (Button) findViewById(R.id.btn_ganti_set);
+        btnSaveVolley = (Button) findViewById(R.id.btn_save_volley);
         tvASet1 = (TextView) findViewById(R.id.tv_a_set1);
         tvBSet1 = (TextView) findViewById(R.id.tv_b_set1);
         tvASet2 = (TextView) findViewById(R.id.tv_a_set2);
@@ -72,8 +74,8 @@ public class VolleyScore extends AppCompatActivity{
         btnGantiSet.setVisibility(View.GONE);
 
 
-        dbHelper = new DatabaseHelper(this);
-        db = dbHelper.getWritableDatabase();
+//        dbHelper = new DatabaseHelper(this);
+//        db = dbHelper.getWritableDatabase();
 
         txtTeamA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -277,5 +279,48 @@ public class VolleyScore extends AppCompatActivity{
         });
 
         dialog.show();
+    }
+
+    public void saveScoreVolley(View view) {
+        String teamA = txtTeamA.getText().toString();
+        String teamB = txtTeamB.getText().toString();
+        int scoreASet1 = Integer.parseInt(tvASet1.getText().toString());
+        int scoreBSet1 = Integer.parseInt(tvBSet1.getText().toString());
+        int scoreASet2 = Integer.parseInt(tvASet2.getText().toString());
+        int scoreBSet2 = Integer.parseInt(tvBSet2.getText().toString());
+        int scoreASet3 = Integer.parseInt(tvASet3.getText().toString());
+        int scoreBSet3 = Integer.parseInt(tvBSet3.getText().toString());
+        int scoreASet4 = Integer.parseInt(tvASet4.getText().toString());
+        int scoreBSet4 = Integer.parseInt(tvBSet4.getText().toString());
+        int scoreASet5 = Integer.parseInt(tvASet5.getText().toString());
+        int scoreBSet5 = Integer.parseInt(tvBSet5.getText().toString());
+        int totalScoreA = Integer.parseInt(tvTotalA.getText().toString());
+        int totalScoreB = Integer.parseInt(tvTotalB.getText().toString());
+
+        Log.d("Score A bro", "Score A: " + totalScoreA);
+        Log.d("Score B bro", "Score B: " + totalScoreB);
+
+        Volley volley = new Volley(teamA, teamB, scoreASet1, scoreBSet1, scoreASet2, scoreBSet2, scoreASet3, scoreBSet3, scoreASet4, scoreBSet4, scoreASet5, scoreBSet5, totalScoreA, totalScoreB );
+
+        Long volley_id = db.createVolley(volley);
+
+        if (volley_id != -1){
+            Toast.makeText(this, "Point berhasil di simpan", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Point gagal di simpan", Toast.LENGTH_LONG).show();
+        }
+
+        scoreTeamA = 0;
+        scoreTeamB = 0;
+
+        txtTeamA.setText("Team A");
+        txtTeamB.setText("Team B");
+
+        tampilScoreA(scoreTeamA);
+        tampilScoreB(scoreTeamB);
+
+
+
+        Log.d("Volley Count", "Volley Count: " + db.getAllVolleys().size());
     }
 }
