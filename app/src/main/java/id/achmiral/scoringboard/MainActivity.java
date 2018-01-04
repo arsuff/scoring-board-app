@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnExit, btnBasket, btnVolley;
+    Button btnExit, btnBasket, btnVolley, btnFootball;
     Toolbar mainToolbar;
 
     @Override
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         btnBasket = findViewById(R.id.btn_basket);
 
         btnVolley = findViewById(R.id.btn_volley);
+        btnFootball = findViewById(R.id.btn_football);
 
         btnVolley.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +52,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent iBasket = new Intent(MainActivity.this, BasketMenuActivity.class);
                 startActivity(iBasket);
+            }
+        });
+
+        btnFootball.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent iFootball = new Intent(MainActivity.this, FootballMenuActivity.class);
+                startActivity(iFootball);
             }
         });
 
