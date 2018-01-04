@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import id.achmiral.scoringboard.helper.DatabaseHelper;
 import id.achmiral.scoringboard.model.Basket;
+import id.achmiral.scoringboard.model.Football;
 
 public class FootballScoreActivity extends AppCompatActivity {
 
@@ -28,7 +29,7 @@ public class FootballScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_football_score);
 
-        footballScoreToolbar = (Toolbar) findViewById(R.id.basket_score_toolbar);
+        footballScoreToolbar = (Toolbar) findViewById(R.id.football_score_toolbar);
         footballScoreToolbar.setTitle("Football Score");
         footballScoreToolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(footballScoreToolbar);
@@ -155,11 +156,11 @@ public class FootballScoreActivity extends AppCompatActivity {
         Log.d("Score A bro", "Score A: " + scoreA);
         Log.d("Score B bro", "Score B: " + scoreB);
 
-        Basket basket = new Basket(teamA, teamB, scoreA, scoreB);
+        Football football = new Football(teamA, teamB, scoreA, scoreB);
 
-        Long basket_id = db.createBasket(basket);
+        Long football_id = db.createFootball(football);
 
-        if (basket_id != -1){
+        if (football_id != -1){
             Toast.makeText(this, "Point berhasil di simpan", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, "Point gagal di simpan", Toast.LENGTH_LONG).show();
@@ -176,6 +177,6 @@ public class FootballScoreActivity extends AppCompatActivity {
 
 
 
-        Log.d("Basket Count", "Basket Count: " + db.getAllBaskets().size());
+        Log.d("Football Count", "Foootball Count: " + db.getAllFootballs().size());
     }
 }
