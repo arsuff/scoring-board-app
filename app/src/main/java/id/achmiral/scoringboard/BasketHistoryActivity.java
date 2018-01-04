@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -18,6 +20,7 @@ import id.achmiral.scoringboard.model.Basket;
 public class BasketHistoryActivity extends AppCompatActivity {
 
     ListView lv_basket_history;
+    TextView tv_empty;
     DatabaseHelper db;
     Toolbar basketHistoryToolbar;
 
@@ -27,6 +30,7 @@ public class BasketHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_basket_history);
 
         basketHistoryToolbar = findViewById(R.id.basket_history_toolbar);
+        basketHistoryToolbar.setTitle("Basket Score History");
         basketHistoryToolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(basketHistoryToolbar);
 
@@ -35,6 +39,14 @@ public class BasketHistoryActivity extends AppCompatActivity {
         final List<Basket> baskets = db.getAllBaskets();
 
         lv_basket_history = findViewById(R.id.list_basket_history);
+
+        tv_empty = findViewById(R.id.tv_empty);
+
+
+        if(db.getAllBaskets().size() == 0) {
+            lv_basket_history.setVisibility(View.GONE);
+            Toast.makeText(this, "Data History Score Kosong", Toast.LENGTH_LONG).show();
+        }
 
         BasketAdapter basketAdapter = new BasketAdapter(this, R.layout.basket_history_row );
         basketAdapter.addAll(baskets);
