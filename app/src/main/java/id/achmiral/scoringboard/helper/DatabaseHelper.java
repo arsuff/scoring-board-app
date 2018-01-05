@@ -226,7 +226,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public List<Football> getAllFootballs() {
         List<Football> footballs = new ArrayList<Football>();
 
-        String selectQuery = "SELECT * FROM " + TABLE_FOOTBALL;
+        String selectQuery = "SELECT * FROM " + TABLE_FOOTBALL + " ORDER BY " + KEY_CREATED_AT
+                + " DESC ";
 
         Log.e(LOG, selectQuery);
 
