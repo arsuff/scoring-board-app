@@ -100,4 +100,11 @@ public class VolleyHistoryDetailActivity extends AppCompatActivity {
 
         tampilKotakAlert.show();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, VolleyHistoryActivity.class));
+        finish();
+    }
 }

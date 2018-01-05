@@ -74,6 +74,7 @@ public class VolleyScore extends AppCompatActivity{
         btnGantiSet.setVisibility(View.GONE);
 
 
+
 //        dbHelper = new DatabaseHelper(this);
 //        db = dbHelper.getWritableDatabase();
 
@@ -148,7 +149,7 @@ public class VolleyScore extends AppCompatActivity{
                     btnTambahTeamB.setVisibility(View.VISIBLE);
                 }
 
-                else if (tvASet1.getText().toString()!=null && tvBSet1.getText().toString()!=null && tvASet2.getText().toString()!=null && tvBSet2.getText().toString()!=null && tvASet3.getText().toString()!=null && tvBSet3.getText().toString()!=null && tvASet4.getText().toString()==null && tvBSet4.getText().toString()==null && tvASet5.getText().toString().contains("0") && tvBSet5.getText().toString().contains("0")){
+                else{
                     tvASet5.setText(Integer.toString(scoreTeamA));
                     tvBSet5.setText(Integer.toString(scoreTeamB));
                     txtScoreA.setText("0");
@@ -159,6 +160,7 @@ public class VolleyScore extends AppCompatActivity{
                     btnTambahTeamB.setVisibility(View.GONE);
                 }
             btnGantiSet.setVisibility(View.GONE);
+
             }
 
         });
@@ -217,6 +219,7 @@ public class VolleyScore extends AppCompatActivity{
             btnTambahTeamA.setVisibility(View.GONE);
             btnTambahTeamB.setVisibility(View.GONE);
             btnGantiSet.setVisibility(View.VISIBLE);
+
         }
         else if (scoreTeamB>=25 && (scoreTeamB-scoreTeamA>=2)){
             pemenang = "team B";
@@ -232,6 +235,7 @@ public class VolleyScore extends AppCompatActivity{
             btnTambahTeamA.setVisibility(View.GONE);
             btnTambahTeamB.setVisibility(View.GONE);
             btnGantiSet.setVisibility(View.VISIBLE);
+
         }
     }
 
@@ -322,5 +326,11 @@ public class VolleyScore extends AppCompatActivity{
 
 
         Log.d("Volley Count", "Volley Count: " + db.getAllVolleys().size());
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, VolleyMenuActivity.class));
+        finish();
     }
 }

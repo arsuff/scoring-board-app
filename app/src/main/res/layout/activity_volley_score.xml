@@ -142,7 +142,9 @@
                     android:onClick="tambahScoreB"
                     />
             </LinearLayout>
+
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -164,6 +166,7 @@
                 android:layout_weight="3"
                 android:textSize="25dp"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:id="@+id/tv_score_total_a"/>
 
             <Button
@@ -188,6 +191,7 @@
                 android:textSize="25dp"
                 android:layout_weight="3"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:id="@+id/tv_score_total_b"/>
         </LinearLayout>
 
@@ -354,6 +358,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
             >
             <TextView
                 android:layout_width="match_parent"
